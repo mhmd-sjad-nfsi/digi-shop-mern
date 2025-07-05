@@ -1,22 +1,19 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { Box, Container } from '@mui/material';
+
+import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
+import ProductDetailsPage from './pages/ProductDetailsPage';
 
 function App() {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <Header />
-      <Container component="main" sx={{ flexGrow: 1, py: 2 }}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          {/* ... بقیه مسیرها */}
-        </Routes>
-      </Container>
-      <Footer />
-    </Box>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="product/:id" element={<ProductDetailsPage />} />
+      </Route>
+    </Routes>
   );
 }
+
 export default App;
