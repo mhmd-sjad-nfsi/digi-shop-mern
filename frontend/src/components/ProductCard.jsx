@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Button, CardActions, CardActionArea } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom'; 
+import ProductRating from './ProductRating'; 
+
 
 const ProductCard = ({ product }) => {
   return (
@@ -17,6 +19,10 @@ const ProductCard = ({ product }) => {
           <Typography gutterBottom variant="h6" component="div" noWrap>
             {product.name}
           </Typography>
+          <ProductRating 
+            value={product.rating} 
+            text={`(${product.numReviews} نظر)`} 
+          />
           <Typography variant="h5" color="primary">
             {product.price.toLocaleString('fa-IR')} تومان
           </Typography>
