@@ -1,4 +1,10 @@
-const express = require('express');
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js'; // ایمپورت تابع اتصال
+
+dotenv.config(); // برای خواندن فایل .env
+
+connectDB(); // فراخوانی تابع اتصال به دیتابیس
 
 const app = express();
 
