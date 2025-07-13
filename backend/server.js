@@ -1,6 +1,8 @@
 import express from 'express';
-import products from './data/products.js'; // این خط را می‌توانیم حذف کنیم
-import productRoutes from './routes/productRoutes.js'; // ✨ روتر را ایمپورت می‌کنیم
+import dotenv from 'dotenv'; // ✨ ایمپورت dotenv
+dotenv.config(); // ✨ پیکربندی dotenv
+
+import productRoutes from './routes/productRoutes.js';
 
 const app = express();
 
@@ -8,11 +10,11 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-// ✨ مسیر اصلی API محصولات
 app.use('/api/products', productRoutes);
 
-const PORT = process.env.PORT || 5000;
+// ✨ حالا از متغیر محیطی که در فایل .env تعریف شده استفاده می‌کنیم
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
-  console.log(`Server running in development mode on port ${PORT}`);
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
