@@ -1,7 +1,9 @@
+// backend/server.js
 import express from 'express';
-import dotenv from 'dotenv'; // ✨ ایمپورت dotenv
-dotenv.config(); // ✨ پیکربندی dotenv
+import dotenv from 'dotenv';
+dotenv.config();
 
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'; // ✨ ایمپورت میان‌افزارها
 import productRoutes from './routes/productRoutes.js';
 
 const app = express();
@@ -12,7 +14,12 @@ app.get('/', (req, res) => {
 
 app.use('/api/products', productRoutes);
 
-// ✨ حالا از متغیر محیطی که در فایل .env تعریف شده استفاده می‌کنیم
+// ✨ میان‌افزار 404 باید بعد از تمام مسیرها قرار بگیرد
+app.use(notFound);
+
+// ✨ میان‌افزار مدیریت خطا باید در آخرین مرحله استفاده شود
+app.use(errorHandler);
+
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
