@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'هدفون بی‌سیم Sony WH-1000XM5',
     image: 'https://placehold.co/600x400/1A237E/FFFFFF?text=Sony+XM5',
     description: 'بهترین هدفون نویز کنسلینگ در بازار با کیفیت صدای بی‌نظیر و طراحی راحت.',
@@ -12,7 +11,6 @@ const products = [
     numReviews: 32,
   },
   {
-    _id: '2',
     name: 'کنسول بازی PlayStation 5',
     image: 'https://placehold.co/600x400/FF9100/000000?text=PS5',
     description: 'کنسول نسل نهمی سونی با درایو دیسک، سرعت بارگذاری فوق‌العاده و پشتیبانی از بازی‌های 4K.',
@@ -24,7 +22,6 @@ const products = [
     numReviews: 150,
   },
   {
-    _id: '3',
     name: 'کیبورد مکانیکال Logitech G Pro',
     image: 'https://placehold.co/600x400/4CAF50/FFFFFF?text=Logitech+Keyboard',
     description: 'کیبورد گیمینگ با سوییچ‌های مکانیکال سریع و نورپردازی RGB قابل تنظیم.',
