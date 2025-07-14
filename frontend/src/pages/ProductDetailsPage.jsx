@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import { Container, Typography, Grid, Box, Button, Paper,Divider } from "@mui/material";
-import productsData from "../productsData";
+import productsData from "../products";
 import ProductRating from "../components/ProductRating";
 
 const ProductDetailsPage = () => {
