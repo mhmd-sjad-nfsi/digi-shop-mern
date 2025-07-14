@@ -1,10 +1,14 @@
-// backend/server.js
+
 import express from 'express';
+import connectDB from './config/db.js'; // ✨ ایمپورت تابع اتصال به دیتابیس
 import dotenv from 'dotenv';
 dotenv.config();
 
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'; // ✨ ایمپورت میان‌افزارها
 import productRoutes from './routes/productRoutes.js';
+dotenv.config();
+
+connectDB(); // ✨ فراخوانی تابع اتصال به دیتابیس
 
 const app = express();
 
