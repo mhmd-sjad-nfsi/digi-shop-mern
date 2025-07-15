@@ -1,8 +1,10 @@
+// frontend/src/redux/store.js
 import { configureStore } from '@reduxjs/toolkit';
+import productsReducer from './slices/productsSlice'; // ✨ ایمپورت ردیوسر جدید
 
 const store = configureStore({
   reducer: {
-    // اینجا در جلسات آینده، Slice های خودمان را اضافه خواهیم کرد
+    products: productsReducer, // ✨ افزودن ردیوسر به آبجکت
   },
 });
 
