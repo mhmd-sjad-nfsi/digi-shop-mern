@@ -1,30 +1,22 @@
-import React, { useState, useEffect } from 'react';
+// frontend/src/pages/HomePage.jsx
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'; // ✨ ایمپورت هوک‌های Redux
 import { Container, Grid, Typography } from '@mui/material';
-import axios from 'axios';
+import { fetchProducts } from '../redux/slices/productsSlice'; // ✨ ایمپورت Thunk
 import ProductCard from '../components/ProductCard';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const dispatch = useDispatch();
+  
+  // ✨ با useSelector، داده‌ها را مستقیماً از Redux Store می‌خوانیم
+  const { products, loading, error } = useSelector((state) => state.products);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get('/api/products');
-        setProducts(data);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []); // [] یعنی این افکت فقط یک بار بعد از رندر اولیه اجرا بشه
+    // ✨ به جای فراخوانی مستقیم API، اکشن مربوطه را dispatch می‌کنیم
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
