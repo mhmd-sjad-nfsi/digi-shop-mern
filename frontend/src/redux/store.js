@@ -1,12 +1,13 @@
-// frontend/src/redux/store.js
 import { configureStore } from '@reduxjs/toolkit';
 import productsReducer from './slices/productsSlice';
-import cartReducer from './slices/cartSlice'; // ✨ ایمپورت ردیوسر سبد خرید
+import cartReducer from './slices/cartSlice';
+import authReducer from './slices/authSlice'; // ✨ ایمپورت ردیوسر جدید
 
 const store = configureStore({
   reducer: {
     products: productsReducer,
-    cart: cartReducer, // ✨ افزودن ردیوسر سبد خرید به آبجکت
+    cart: cartReducer,
+    auth: authReducer, // ✨ افزودن ردیوسر احراز هویت
   },
 });
 
