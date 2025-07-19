@@ -1,27 +1,27 @@
-
 import express from 'express';
-import connectDB from './config/db.js'; // ✨ ایمپورت تابع اتصال به دیتابیس
 import dotenv from 'dotenv';
-dotenv.config();
-
-import { notFound, errorHandler } from './middleware/errorMiddleware.js'; // ✨ ایمپورت میان‌افزارها
+import connectDB from './config/db.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import productRoutes from './routes/productRoutes.js';
-dotenv.config();
+import userRoutes from './routes/userRoutes.js'; // ✨ ایمپورت مسیرهای کاربر
 
-connectDB(); // ✨ فراخوانی تابع اتصال به دیتابیس
+
+dotenv.config();
+connectDB();
 
 const app = express();
+
+// ✨ میان‌افزار برای解析 کردن بدنه درخواست به صورت JSON
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes); // ✨ اتصال مسیرهای کاربر
 
-// ✨ میان‌افزار 404 باید بعد از تمام مسیرها قرار بگیرد
 app.use(notFound);
-
-// ✨ میان‌افزار مدیریت خطا باید در آخرین مرحله استفاده شود
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 8000;
