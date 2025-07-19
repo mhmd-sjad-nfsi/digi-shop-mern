@@ -18,6 +18,7 @@ const authSlice = createSlice({
   reducers: {
     // اکشن‌های همزمان مثل logout در جلسات آینده اینجا اضافه می‌شوند
   },
+  // eslint-disable-next-line no-unused-vars
   extraReducers: (builder) => {
     // منطق مربوط به thunkهای login و register در جلسات آینده اینجا اضافه می‌شود
   },

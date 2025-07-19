@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import { useNavigate, useParams, Link as RouterLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"; // ✨ ایمپورت هوک‌ها
-import { useState } from "react"; // ✨ ایمپورت useState برای مدیریت تعداد
+import React, { useState } from "react";
+import { useParams, Link as RouterLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   Container,
   Typography,
@@ -15,37 +14,41 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { fetchProductDetails } from "../redux/slices/productsSlice"; // ✨ ایمپورت Thunk
+import { useGetProductDetailsQuery } from "../redux/slices/productsApiSlice"; // ✨ استفاده از RTK Query
+import { addToCart } from "../redux/slices/cartSlice";
 import ProductRating from "../components/ProductRating";
 import Loader from "../components/Loader";
-import { addToCart } from "../redux/slices/cartSlice"; // ✨ اکشن addToCart را ایمپورت می‌کنیم
 import Message from "../components/Message";
+
 const ProductDetailsPage = () => {
   const { id: productId } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // ✨ هوک هدایت را مقداردهی می‌کنیم
-  const [qty, setQty] = useState(1); // ✨ State برای مدیریت تعداد
+  const navigate = useNavigate();
+  const [qty, setQty] = useState(1);
 
-  // ✨ با useSelector، داده‌ها را مستقیماً از Redux Store می‌خوانیم
-  const { product, loading, error } = useSelector((state) => state.products);
+  // ✨ دریافت جزئیات محصول با RTK Query
+  const {
+    data: product,
+    isLoading,
+    error,
+  } = useGetProductDetailsQuery(productId);
 
-  useEffect(() => {
-    // ✨ اکشن مربوط به دریافت جزئیات را با ارسال productId دیسپچ می‌کنیم
-    dispatch(fetchProductDetails(productId));
-  }, [dispatch, productId]);
   const addToCartHandler = () => {
     dispatch(addToCart({ ...product, qty }));
     navigate("/cart");
   };
+
   return (
     <Container sx={{ py: 3 }} maxWidth="lg">
       <Button component={RouterLink} to="/" sx={{ mb: 3 }}>
         ← بازگشت به لیست محصولات
       </Button>
-      {loading ? (
+      {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message severity="error">{error}</Message>
+        <Message severity="error">
+          {error?.data?.message || "خطایی در دریافت اطلاعات محصول رخ داده است"}
+        </Message>
       ) : (
         <Grid container spacing={5}>
           {/* ستون اول: تصویر محصول */}
@@ -103,7 +106,8 @@ const ProductDetailsPage = () => {
                     {product.countInStock > 0 ? "موجود در انبار" : "ناموجود"}
                   </Typography>
                 </Grid>
-                {/* ✨ اگر محصول موجود بود، بخش انتخاب تعداد را نمایش بده */}
+
+                {/* ✨ انتخاب تعداد در صورت موجود بودن محصول */}
                 {product.countInStock > 0 && (
                   <Grid item xs={12}>
                     <FormControl fullWidth>
@@ -128,7 +132,7 @@ const ProductDetailsPage = () => {
                     color="primary"
                     fullWidth
                     disabled={product.countInStock === 0}
-                    onClick={addToCartHandler} // ✨ اتصال رویداد کلیک
+                    onClick={addToCartHandler}
                   >
                     افزودن به سبد خرید
                   </Button>
