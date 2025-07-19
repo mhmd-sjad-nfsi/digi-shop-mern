@@ -1,17 +1,45 @@
 // frontend/src/pages/RegisterPage.jsx
-import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRegisterMutation } from '../redux/slices/usersApiSlice';
+import { setCredentials } from '../redux/slices/authSlice';
 import { Container, Typography, TextField, Button, Stack, Paper, Box, Grid } from '@mui/material';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState(null);
 
-  const submitHandler = (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [register, { isLoading }] = useRegisterMutation();
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/');
+    }
+  }, [navigate, userInfo]);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log('Register Submit');
+    if (password !== confirmPassword) {
+      setMessage('رمزهای عبور یکسان نیستند');
+    } else {
+      try {
+        const res = await register({ name, email, password }).unwrap();
+        dispatch(setCredentials(res));
+        navigate('/');
+      } catch (err) {
+        setMessage(err?.data?.message || err.error);
+      }
+    }
   };
 
   return (
@@ -22,6 +50,8 @@ const RegisterPage = () => {
             ایجاد حساب کاربری
           </Typography>
           <Stack spacing={2} sx={{ mt: 2 }}>
+            {message && <Message severity="error">{message}</Message>}
+            {isLoading && <Loader />}
             <TextField
               label="نام کامل"
               fullWidth
@@ -53,7 +83,7 @@ const RegisterPage = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button type="submit" fullWidth variant="contained" disabled={isLoading} sx={{ mt: 3, mb: 2 }}>
               ثبت‌نام
             </Button>
             <Grid container justifyContent="flex-end">
