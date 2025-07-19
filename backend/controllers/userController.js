@@ -27,4 +27,20 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser };
+
+// @desc    Auth user & get token
+// @route   POST /api/users/login
+// @access  Public
+const authUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+
+  if (user && (await user.matchPassword(password))) {
+    res.json({ /* ...اطلاعات کاربر و توکن... */ });
+  } else {
+    res.status(401);
+    throw new Error('ایمیل یا رمز عبور نامعتبر است');
+  }
+});
+
+export { registerUser, authUser };

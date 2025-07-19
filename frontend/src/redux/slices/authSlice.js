@@ -1,27 +1,26 @@
 // frontend/src/redux/slices/authSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-// اطلاعات کاربر را از localStorage می‌خوانیم
-const userInfoFromStorage = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo'))
-  : null;
-
 const initialState = {
-  userInfo: userInfoFromStorage, // حالت اولیه بر اساس localStorage
-  loading: false,
-  error: null,
+  userInfo: localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo'))
+    : null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    // اکشن‌های همزمان مثل logout در جلسات آینده اینجا اضافه می‌شوند
-  },
-  // eslint-disable-next-line no-unused-vars
-  extraReducers: (builder) => {
-    // منطق مربوط به thunkهای login و register در جلسات آینده اینجا اضافه می‌شود
+    setCredentials: (state, action) => {
+      state.userInfo = action.payload;
+      localStorage.setItem('userInfo', JSON.stringify(action.payload));
+    },
+    logout: (state) => {
+      state.userInfo = null;
+      localStorage.removeItem('userInfo');
+    },
   },
 });
 
+export const { setCredentials, logout } = authSlice.actions;
 export default authSlice.reducer;
