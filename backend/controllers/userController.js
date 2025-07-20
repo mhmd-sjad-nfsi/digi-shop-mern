@@ -43,4 +43,14 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, authUser };
+// @desc    Logout user / clear cookie
+// @route   POST /api/users/logout
+// @access  Public
+const logoutUser = asyncHandler(async (req, res) => {
+  res.status(200).json({ message: 'User logged out successfully' });
+});
+
+// ✨ authUser و registerUser از قبل اینجا هستند
+// ✨ logoutUser را هم اضافه و export کنید
+export { authUser, registerUser, logoutUser };
+

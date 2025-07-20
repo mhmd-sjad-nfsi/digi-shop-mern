@@ -29,8 +29,8 @@ const Header = () => {
 
   const logoutHandler = async () => {
     try {
-      await logoutApiCall().unwrap();
-      dispatch(logout()); // پاک کردن state از authSlice
+      await logoutApiCall().unwrap(); // ✨ فراخوانی API خروج
+      dispatch(logout()); // ✨ پاک کردن state از authSlice و localStorage
       navigate('/login');
     } catch (err) {
       console.error(err);
