@@ -1,15 +1,17 @@
-// backend/data/users.js
+import bcrypt from 'bcryptjs';
+
 const users = [
   {
-    name: 'ادمین سیستم',
+    name: 'ادمین',
     email: 'admin@example.com',
-    password: '123456',
+    password: bcrypt.hashSync('admin123', 10),
     isAdmin: true,
   },
   {
-    name: 'کاربر ساده',
+    name: 'کاربر عادی', 
     email: 'user@example.com',
-    password: '123456',
+    password: bcrypt.hashSync('user123', 10),
+    isAdmin: false,
   },
 ];
 
