@@ -6,6 +6,8 @@ import HomePage from './pages/HomePage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import PrivateRoute from './components/common/PrivateRoute'; // ✨
+import ProfilePage from './pages/ProfilePage'; // ✨
 
 function App() {
   return (
@@ -16,6 +18,14 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+
+
+        {/* ✨ مسیرهای محافظت‌شده */}
+        <Route path="" element={<PrivateRoute />}>
+          <Route path="/profile" element={<ProfilePage />} />
+        </Route>
+
+
       </Route>
     </Routes>
   );
