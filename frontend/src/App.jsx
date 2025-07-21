@@ -9,6 +9,7 @@ import RegisterPage from './pages/RegisterPage';
 import PrivateRoute from './components/common/PrivateRoute'; // ✨
 import ProfilePage from './pages/ProfilePage'; // ✨
 import ShippingPage from './pages/ShippingPage'; // ✨
+import PaymentPage from './pages/PaymentPage';
 function App() {
   return (
     <Routes>
@@ -24,6 +25,7 @@ function App() {
         <Route path="" element={<PrivateRoute />}>
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/shipping" element={<ShippingPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
         </Route>
 
 

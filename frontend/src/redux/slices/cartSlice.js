@@ -1,14 +1,14 @@
 // frontend/src/redux/slices/cartSlice.js
-import { createSlice } from '@reduxjs/toolkit';
-import { updateCart } from '../../utils/cartUtils'; // ✨ ایمپورت تابع کمکی
+import { createSlice } from "@reduxjs/toolkit";
+import { updateCart } from "../../utils/cartUtils"; // ✨ ایمپورت تابع کمکی
 
 // ✨ حالت اولیه را از localStorage می‌خوانیم
-const initialState = localStorage.getItem('cart')
-  ? JSON.parse(localStorage.getItem('cart'))
-  : { cartItems: [], shippingAddress: {}, paymentMethod: 'PayPal' };
+const initialState = localStorage.getItem("cart")
+  ? JSON.parse(localStorage.getItem("cart"))
+  : { cartItems: [], shippingAddress: {}, paymentMethod: "PayPal" };
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     addToCart: (state, action) => {
@@ -34,9 +34,14 @@ const cartSlice = createSlice({
       state.shippingAddress = action.payload;
       return updateCart(state); // برای ذخیره کل سبد در localStorage
     },
+    savePaymentMethod: (state, action) => {
+      state.paymentMethod = action.payload;
+      return updateCart(state);
+    },
   },
 });
 
-export const { addToCart, removeFromCart,saveShippingAddress  } = cartSlice.actions;
+export const { addToCart, removeFromCart, saveShippingAddress, savePaymentMethod } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

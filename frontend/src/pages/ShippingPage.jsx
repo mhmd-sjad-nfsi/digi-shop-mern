@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Container, Typography, TextField, Button, Stack, Paper } from '@mui/material';
 import { saveShippingAddress } from '../redux/slices/cartSlice';
+import CheckoutSteps from '../components/common/CheckoutSteps'; // ✨
+
 
 const ShippingPage = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ const ShippingPage = () => {
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mt: 5 }}>
+        <CheckoutSteps activeStep={1} />
       <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
         <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
           آدرس ارسال
