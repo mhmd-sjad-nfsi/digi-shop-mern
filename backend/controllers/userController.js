@@ -85,10 +85,21 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
+    // ✨ بررسی یکتایی ایمیل جدید
+    if (req.body.email && req.body.email !== user.email) {
+      const emailExists = await User.findOne({ email: req.body.email });
+      if (emailExists) {
+        res.status(400);
+        throw new Error('این ایمیل قبلاً ثبت شده است');
+      }
+    }
+    
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
 
     if (req.body.password) {
+      // ✨ مشکل امنیتی حل شد: رمز عبور اکنون هش می‌شود
+      // نیازی به هش کردن دستی نیست، چون هوک pre-save در userModel این کار را انجام می‌دهد.
       user.password = req.body.password;
     }
 
@@ -99,7 +110,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
-      token: generateToken(updatedUser._id), // توکن جدید برای اطمینان
+      token: generateToken(updatedUser._id), // ارسال توکن جدید مهم است
     });
   } else {
     res.status(404);

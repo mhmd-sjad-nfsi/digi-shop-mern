@@ -30,7 +30,15 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
+      invalidatesTags: ['User'], // ✨ هر عملیاتی که User را آپدیت می‌کند باید این تگ را داشته باشد
     }),
+    
+    // ✨ یک query جدید برای دریافت اطلاعات پروفایل
+    getProfile: builder.query({
+        query: () => `${USERS_URL}/profile`,
+        providesTags: ['User'],
+    }),
+
   }),
 });
 
@@ -38,5 +46,6 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useLogoutMutation,
-  useUpdateProfileMutation, 
+  useUpdateProfileMutation, // ✨
+  useGetProfileQuery,      // ✨
 } = usersApiSlice;
