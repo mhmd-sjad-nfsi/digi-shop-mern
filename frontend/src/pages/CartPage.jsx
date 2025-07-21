@@ -24,8 +24,8 @@ const CartPage = () => {
     dispatch(removeFromCart(id));
   };
 
-  const checkoutHandler = () => {
-    navigate('/login?redirect=/shipping'); // در جلسات آینده صفحه shipping را می‌سازیم
+ const checkoutHandler = () => {
+    navigate('/shipping'); // ✨ به جای لاگین، مستقیماً به صفحه آدرس می‌رود
   };
 
   return (

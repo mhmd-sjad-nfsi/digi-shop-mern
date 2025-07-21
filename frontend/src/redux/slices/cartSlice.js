@@ -30,9 +30,13 @@ const cartSlice = createSlice({
       // ✨ پس از هر تغییر، سبد خرید را به‌روزرسانی و ذخیره می‌کنیم
       return updateCart(state);
     },
+    saveShippingAddress: (state, action) => {
+      state.shippingAddress = action.payload;
+      return updateCart(state); // برای ذخیره کل سبد در localStorage
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart,saveShippingAddress  } = cartSlice.actions;
 
 export default cartSlice.reducer;

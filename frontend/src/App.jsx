@@ -8,7 +8,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import PrivateRoute from './components/common/PrivateRoute'; // ✨
 import ProfilePage from './pages/ProfilePage'; // ✨
-
+import ShippingPage from './pages/ShippingPage'; // ✨
 function App() {
   return (
     <Routes>
@@ -23,6 +23,7 @@ function App() {
         {/* ✨ مسیرهای محافظت‌شده */}
         <Route path="" element={<PrivateRoute />}>
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/shipping" element={<ShippingPage />} />
         </Route>
 
 
