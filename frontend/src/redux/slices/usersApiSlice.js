@@ -1,7 +1,6 @@
 import { apiSlice } from "./apiSlice";
+import { USERS_URL } from "../../constants"; // ✨ فایل constants را بعدا می‌سازیم
 
-const USERS_URL = '/api/users';
-const ORDERS_URL = '/api/orders';
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
@@ -38,13 +37,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       query: () => `${USERS_URL}/profile`,
       providesTags: ["User"],
     }),
-    createOrder: builder.mutation({
-      query: (order) => ({
-        url: ORDERS_URL,
-        method: "POST",
-        body: { ...order },
-      }),
-    }),
+    
   }),
 });
 
@@ -54,5 +47,4 @@ export const {
   useLogoutMutation,
   useUpdateProfileMutation, // ✨
   useGetProfileQuery, // ✨
-  useCreateOrderMutation 
 } = usersApiSlice;

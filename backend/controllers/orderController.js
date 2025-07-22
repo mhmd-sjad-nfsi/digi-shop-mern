@@ -38,5 +38,22 @@ const addOrderItems = asyncHandler(async (req, res) => {
     res.status(201).json(createdOrder);
   }
 });
+  // @desc    Get order by ID
+// @route   GET /api/orders/:id
+// @access  Private
+const getOrderById = asyncHandler(async (req, res) => {
+  // با استفاده از populate، نام و ایمیل کاربر مربوط به این سفارش را هم دریافت می‌کنیم
+  const order = await Order.findById(req.params.id).populate(
+    'user',
+    'name email'
+  );
 
-export { addOrderItems };
+  if (order) {
+    res.status(200).json(order);
+  } else {
+    res.status(404);
+    throw new Error('سفارش یافت نشد');
+  }
+});
+
+export { addOrderItems, getOrderById };

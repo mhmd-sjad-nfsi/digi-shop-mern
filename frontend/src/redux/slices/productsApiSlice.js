@@ -1,7 +1,7 @@
 // frontend/src/redux/slices/productsApiSlice.js
 import { apiSlice } from './apiSlice';
+import { PRODUCTS_URL } from '../../constants'; // ✨ فایل constants را بعدا می‌سازیم
 
-const PRODUCTS_URL = '/api/products'; // برای خوانایی بهتر
 
 export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

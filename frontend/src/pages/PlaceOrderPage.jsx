@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import CheckoutSteps from '../components/common/CheckoutSteps';
-import { useCreateOrderMutation } from '../redux/slices/usersApiSlice';
+import { useCreateOrderMutation } from '../redux/slices/ordersApiSlice';
 import { clearCartItems } from '../redux/slices/cartSlice';
 
 const PlaceOrderPage = () => {
