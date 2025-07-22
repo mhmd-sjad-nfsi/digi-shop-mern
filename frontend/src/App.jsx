@@ -10,6 +10,7 @@ import PrivateRoute from './components/common/PrivateRoute'; // ✨
 import ProfilePage from './pages/ProfilePage'; // ✨
 import ShippingPage from './pages/ShippingPage'; // ✨
 import PaymentPage from './pages/PaymentPage';
+import PlaceOrderPage from './pages/PlaceOrderPage'; // ✨
 function App() {
   return (
     <Routes>
@@ -23,9 +24,10 @@ function App() {
 
         {/* ✨ مسیرهای محافظت‌شده */}
         <Route path="" element={<PrivateRoute />}>
-          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/shipping" element={<ShippingPage />} />
           <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/placeorder" element={<PlaceOrderPage />} /> {/* ✨ */}
+          <Route path="/profile" element={<ProfilePage />} />
         </Route>
 
 

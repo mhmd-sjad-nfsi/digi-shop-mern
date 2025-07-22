@@ -38,10 +38,14 @@ const cartSlice = createSlice({
       state.paymentMethod = action.payload;
       return updateCart(state);
     },
+    clearCartItems: (state) => {
+      state.cartItems = [];
+      return updateCart(state); // برای به‌روزرسانی قیمت‌ها و localStorage
+    },
   },
 });
 
-export const { addToCart, removeFromCart, saveShippingAddress, savePaymentMethod } =
+export const { addToCart, removeFromCart, saveShippingAddress, savePaymentMethod,clearCartItems } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
