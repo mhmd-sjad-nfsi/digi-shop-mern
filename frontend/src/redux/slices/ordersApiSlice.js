@@ -24,7 +24,19 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         body: { ...details },
       }),
     }),
+  // ✨ Query جدید برای دریافت سفارشات من
+    getMyOrders: builder.query({
+      query: () => ({
+        url: `${ORDERS_URL}/myorders`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
-export const { useCreateOrderMutation, useGetOrderDetailsQuery, usePayOrderMutation } = ordersApiSlice;
+export const {
+  useCreateOrderMutation,
+  useGetOrderDetailsQuery,
+  usePayOrderMutation,
+  useGetMyOrdersQuery, // ✨
+} = ordersApiSlice;

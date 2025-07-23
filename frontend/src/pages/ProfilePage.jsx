@@ -1,12 +1,19 @@
 // frontend/src/pages/ProfilePage.jsx
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Typography, TextField, Button, Stack, Paper, Grid } from '@mui/material';
+import {
+  Container, Typography, TextField, Button, Stack, Paper, Grid,
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton
+} from '@mui/material';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useUpdateProfileMutation } from '../redux/slices/usersApiSlice';
 import { setCredentials } from '../redux/slices/authSlice';
 import { toast } from 'react-toastify';
+import { useGetMyOrdersQuery } from '../redux/slices/ordersApiSlice';
+import { Link as RouterLink } from 'react-router-dom';
+import ClearIcon from '@mui/icons-material/Clear';
+
 
 const ProfilePage = () => {
   const [name, setName] = useState('');
@@ -45,6 +52,7 @@ const ProfilePage = () => {
       toast.error(err?.data?.message || err.error);
     }
   };
+    const { data: orders, isLoading: loadingOrders, error: errorOrders } = useGetMyOrdersQuery();
 
   return (
     <Grid container spacing={3}>
@@ -73,7 +81,54 @@ const ProfilePage = () => {
       </Grid>
       <Grid item md={8}>
         <Typography variant="h5" sx={{ mb: 2 }}>سفارشات من</Typography>
-        {/* لیست سفارشات اینجا نمایش داده می‌شود */}
+        {loadingOrders ? (
+          <Loader />
+        ) : errorOrders ? (
+          <Message severity="error">{errorOrders?.data?.message || errorOrders.error}</Message>
+        ) : (
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>شناسه</TableCell>
+                  <TableCell>تاریخ</TableCell>
+                  <TableCell>مبلغ کل</TableCell>
+                  <TableCell>وضعیت پرداخت</TableCell>
+                  <TableCell>وضعیت تحویل</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {orders.map((order) => (
+                  <TableRow key={order._id}>
+                    <TableCell>{order._id}</TableCell>
+                    <TableCell>{new Date(order.createdAt).toLocaleDateString('fa-IR')}</TableCell>
+                    <TableCell>{Number(order.totalPrice).toLocaleString('fa-IR')} تومان</TableCell>
+                    <TableCell>
+                      {order.isPaid ? (
+                        new Date(order.paidAt).toLocaleDateString('fa-IR')
+                      ) : (
+                        <ClearIcon color="error" />
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {order.isDelivered ? (
+                        new Date(order.deliveredAt).toLocaleDateString('fa-IR')
+                      ) : (
+                        <ClearIcon color="error" />
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <Button variant="outlined" size="small" component={RouterLink} to={`/order/${order._id}`}>
+                        جزئیات
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
       </Grid>
     </Grid>
   );
