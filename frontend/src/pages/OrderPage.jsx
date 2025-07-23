@@ -1,14 +1,28 @@
 // frontend/src/pages/OrderPage.jsx
 import React from 'react';
 import { useParams, Link as RouterLink } from 'react-router-dom';
-import { Box, Typography, Grid, Paper, List, ListItem, ListItemText, CardMedia } from '@mui/material';
-import { useGetOrderDetailsQuery } from '../redux/slices/ordersApiSlice';
+import { Box, Typography, Grid, Paper, List, ListItem, ListItemText, CardMedia,Button,
+  CardContent, } from '@mui/material';
+import { toast } from 'react-toastify';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import { useGetOrderDetailsQuery, usePayOrderMutation } from '../redux/slices/ordersApiSlice'; // ✨
 
 const OrderPage = () => {
   const { id: orderId } = useParams();
-  const { data: order, isLoading, error } = useGetOrderDetailsQuery(orderId);
+  const { data: order, refetch, isLoading, error } = useGetOrderDetailsQuery(orderId);
+  const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+  const onApproveTest = async () => {
+    try {
+      // در دنیای واقعی، 'details' از درگاه پرداخت می‌آید
+      await payOrder({ orderId, details: { payer: {} } }).unwrap();
+      refetch(); // ✨ صفحه را مجدداً بارگذاری می‌کند تا وضعیت پرداخت آپدیت شود
+      toast.success('پرداخت با موفقیت انجام شد');
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
 
   return isLoading ? (
     <Loader />
@@ -73,6 +87,15 @@ const OrderPage = () => {
             <List>
               <ListItem><Typography variant="h5">خلاصه سفارش</Typography></ListItem>
               {/* ... خلاصه قیمت‌ها ... */}
+              {/* ✨ بخش پرداخت شرطی */}
+                {!order.isPaid && (
+                  <ListItem>
+                    {loadingPay && <Loader />}
+                    <Button onClick={onApproveTest} variant="contained" fullWidth>
+                      پرداخت شبیه‌سازی شده
+                    </Button>
+                  </ListItem>
+                )}
             </List>
           </Card>
         </Grid>
