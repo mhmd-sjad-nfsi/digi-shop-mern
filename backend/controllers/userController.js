@@ -117,5 +117,31 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     throw new Error('کاربر یافت نشد');
   }
 });
+// @desc    Get all users
+// @route   GET /api/users
+// @access  Private/Admin
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  res.status(200).json(users);
+});
 
-export { authUser, registerUser, logoutUser, getUserProfile, updateUserProfile };
+// @desc    Delete user
+// @route   DELETE /api/users/:id
+// @access  Private/Admin
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    if (user.isAdmin) {
+      res.status(400);
+      throw new Error('کاربر ادمین را نمی‌توان حذف کرد');
+    }
+    await User.deleteOne({ _id: user._id });
+    res.status(200).json({ message: 'کاربر با موفقیت حذف شد' });
+  } else {
+    res.status(404);
+    throw new Error('کاربر یافت نشد');
+  }
+});
+
+export { authUser, registerUser, logoutUser, getUserProfile, updateUserProfile , getUsers, deleteUser };

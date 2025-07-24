@@ -38,6 +38,21 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       providesTags: ["User"],
     }),
     
+  getUsers: builder.query({
+      query: () => ({
+        url: USERS_URL,
+      }),
+      providesTags: ['User'], // برای کش کردن
+      keepUnusedDataFor: 5,
+    }),
+    
+    // ✨ Mutation جدید برای حذف کاربر
+    deleteUser: builder.mutation({
+      query: (userId) => ({
+        url: `${USERS_URL}/${userId}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
@@ -47,4 +62,6 @@ export const {
   useLogoutMutation,
   useUpdateProfileMutation, // ✨
   useGetProfileQuery, // ✨
+  useGetUsersQuery, // ✨
+  useDeleteUserMutation, // ✨
 } = usersApiSlice;

@@ -13,6 +13,8 @@ import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage'; // ✨
 import OrderPage from './pages/OrderPage'; // ✨
 import AdminRoute from './components/common/AdminRoute'; // ✨
+import UserListPage from './pages/admin/UserListPage'; // ✨
+
 
 
 
@@ -37,7 +39,7 @@ function App() {
         </Route>
         {/* ✨ مسیرهای محافظت‌شده ادمین */}
         <Route path="" element={<AdminRoute />}>
-          <Route path="/admin/users" element={<h1>صفحه مدیریت کاربران</h1>} />
+        <Route path="/admin/users" element={<UserListPage />} /> // ✨
           <Route path="/admin/products" element={<h1>صفحه مدیریت محصولات</h1>} />
           <Route path="/admin/orders" element={<h1>صفحه مدیریت سفارشات</h1>} />
         </Route>
