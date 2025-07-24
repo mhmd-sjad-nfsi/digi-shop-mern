@@ -53,6 +53,22 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: 'DELETE',
       }),
     }),
+ getUserDetails: builder.query({
+      query: (userId) => ({
+        url: `${USERS_URL}/${userId}`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
+    
+    // ✨ Mutation جدید برای به‌روزرسانی کاربر
+    updateUser: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/${data.userId}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['User'], // ✨ باعث می‌شود کش لیست کاربران باطل و دوباره فراخوانی شود
+    }),
   }),
 });
 
@@ -64,4 +80,7 @@ export const {
   useGetProfileQuery, // ✨
   useGetUsersQuery, // ✨
   useDeleteUserMutation, // ✨
+  useGetUserDetailsQuery, // ✨
+  useUpdateUserMutation, // ✨
+  
 } = usersApiSlice;
