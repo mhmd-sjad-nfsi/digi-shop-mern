@@ -12,6 +12,8 @@ import ShippingPage from './pages/ShippingPage'; // ✨
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage'; // ✨
 import OrderPage from './pages/OrderPage'; // ✨
+import AdminRoute from './components/common/AdminRoute'; // ✨
+
 
 
 function App() {
@@ -33,8 +35,12 @@ function App() {
           <Route path="/order/:id" element={<OrderPage />} /> {/* ✨ */}
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
-
-
+        {/* ✨ مسیرهای محافظت‌شده ادمین */}
+        <Route path="" element={<AdminRoute />}>
+          <Route path="/admin/users" element={<h1>صفحه مدیریت کاربران</h1>} />
+          <Route path="/admin/products" element={<h1>صفحه مدیریت محصولات</h1>} />
+          <Route path="/admin/orders" element={<h1>صفحه مدیریت سفارشات</h1>} />
+        </Route>
       </Route>
     </Routes>
   );
