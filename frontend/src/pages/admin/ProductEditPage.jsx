@@ -8,6 +8,7 @@ import Loader from '../../components/Loader';
 import {
   useGetProductDetailsQuery,
   useUpdateProductMutation,
+  useUploadProductImageMutation,
 } from '../../redux/slices/productsApiSlice';
 
 const ProductEditPage = () => {
@@ -24,6 +25,8 @@ const ProductEditPage = () => {
 
   const { data: product, isLoading, error } = useGetProductDetailsQuery(productId);
   const [updateProduct, { isLoading: loadingUpdate }] = useUpdateProductMutation();
+    const [uploadProductImage, { isLoading: loadingUpload }] = useUploadProductImageMutation(); // ✨
+
 
   useEffect(() => {
     if (product) {
@@ -36,7 +39,17 @@ const ProductEditPage = () => {
       setDescription(product.description);
     }
   }, [product]);
-
+   const uploadFileHandler = async (e) => {
+    const formData = new FormData();
+    formData.append('image', e.target.files[0]);
+    try {
+      const res = await uploadProductImage(formData).unwrap();
+      toast.success(res.message);
+      setImage(res.image);
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -58,12 +71,18 @@ const ProductEditPage = () => {
       <Paper sx={{ p: 3 }}>
         <Typography variant="h4" gutterBottom>ویرایش محصول</Typography>
         {loadingUpdate && <Loader />}
+        {loadingUpload && <Loader />}
         {isLoading ? <Loader /> : error ? <Message /> : (
           <form onSubmit={submitHandler}>
             <TextField label="نام" value={name} onChange={(e) => setName(e.target.value)} fullWidth sx={{ mb: 2 }} />
             <TextField label="قیمت" type="number" value={price} onChange={(e) => setPrice(e.target.value)} fullWidth sx={{ mb: 2 }} />
             <TextField label="آدرس تصویر" value={image} onChange={(e) => setImage(e.target.value)} fullWidth sx={{ mb: 2 }} />
-            <TextField label="برند" value={brand} onChange={(e) => setBrand(e.target.value)} fullWidth sx={{ mb: 2 }} />
+            
+            {/* ✨ فیلد آپلود فایل */}
+            <Button component="label" variant="contained" sx={{ mb: 2 }}>
+              انتخاب فایل
+              <input type="file" hidden onChange={uploadFileHandler} />
+            </Button>            <TextField label="برند" value={brand} onChange={(e) => setBrand(e.target.value)} fullWidth sx={{ mb: 2 }} />
             <TextField label="دسته‌بندی" value={category} onChange={(e) => setCategory(e.target.value)} fullWidth sx={{ mb: 2 }} />
             <TextField label="موجودی" type="number" value={countInStock} onChange={(e) => setCountInStock(e.target.value)} fullWidth sx={{ mb: 2 }} />
             <TextField label="توضیحات" value={description} onChange={(e) => setDescription(e.target.value)} fullWidth multiline rows={4} sx={{ mb: 2 }} />

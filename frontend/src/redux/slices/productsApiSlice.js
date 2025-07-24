@@ -1,6 +1,8 @@
 // frontend/src/redux/slices/productsApiSlice.js
 import { apiSlice } from './apiSlice';
 import { PRODUCTS_URL } from '../../constants'; // ✨ فایل constants را بعدا می‌سازیم
+import { UPLOAD_URL } from '../../constants'; // ✨
+
 
 
 export const productsApiSlice = apiSlice.injectEndpoints({
@@ -42,6 +44,14 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Product'], // ✨ کش لیست محصولات را باطل می‌کند
     }),
+    // ✨ Mutation جدید برای آپلود تصویر
+    uploadProductImage: builder.mutation({
+      query: (data) => ({
+        url: UPLOAD_URL,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -51,4 +61,5 @@ export const {
   useCreateProductMutation, // ✨
   useDeleteProductMutation, // ✨
   useUpdateProductMutation, // ✨
+  useUploadProductImageMutation, // ✨
 } = productsApiSlice;
