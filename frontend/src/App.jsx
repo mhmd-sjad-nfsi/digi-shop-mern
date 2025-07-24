@@ -16,7 +16,7 @@ import AdminRoute from './components/common/AdminRoute'; // ✨
 import UserListPage from './pages/admin/UserListPage'; // ✨
 import UserEditPage from './pages/admin/UserEditPage'; // ✨
 import ProductListPage from './pages/admin/ProductListPage'; // ✨
-
+import ProductEditPage from './pages/admin/ProductEditPage'; // ✨
 
 
 function App() {
@@ -43,6 +43,7 @@ function App() {
         <Route path="/admin/users" element={<UserListPage />} />
         <Route path="/admin/user/:id/edit" element={<UserEditPage />} />
         <Route path="/admin/products" element={<ProductListPage />} />
+        <Route path="/admin/product/:id/edit" element={<ProductEditPage />} /> 
         <Route path="/admin/orders" element={<h1>صفحه مدیریت سفارشات</h1>} />
         </Route>
       </Route>

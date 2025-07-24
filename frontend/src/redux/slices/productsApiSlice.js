@@ -34,6 +34,14 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         method: 'DELETE',
       }),
     }),
+    updateProduct: builder.mutation({
+      query: (data) => ({
+        url: `${PRODUCTS_URL}/${data.productId}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['Product'], // ✨ کش لیست محصولات را باطل می‌کند
+    }),
   }),
 });
 
@@ -42,4 +50,5 @@ export const {
   useGetProductDetailsQuery,
   useCreateProductMutation, // ✨
   useDeleteProductMutation, // ✨
+  useUpdateProductMutation, // ✨
 } = productsApiSlice;
