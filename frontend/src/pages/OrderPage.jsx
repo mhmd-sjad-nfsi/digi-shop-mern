@@ -1,5 +1,6 @@
 // frontend/src/pages/OrderPage.jsx
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -20,6 +21,7 @@ import Message from '../components/Message';
 import {
   useGetOrderDetailsQuery,
   usePayOrderMutation,
+  useDeliverOrderMutation,
 } from '../redux/slices/ordersApiSlice';
 
 const OrderPage = () => {
@@ -32,6 +34,8 @@ const OrderPage = () => {
   } = useGetOrderDetailsQuery(orderId);
 
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+  const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
+    const { userInfo } = useSelector((state) => state.auth);
 
   const onApproveTest = async () => {
     try {
@@ -42,7 +46,15 @@ const OrderPage = () => {
       toast.error(err?.data?.message || err.error);
     }
   };
-
+  const deliverOrderHandler = async () => {
+    try {
+      await deliverOrder(orderId);
+      refetch();
+      toast.success('وضعیت سفارش به ارسال شده تغییر یافت');
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
   return isLoading ? (
     <Loader />
   ) : error ? (
@@ -160,6 +172,20 @@ const OrderPage = () => {
                     </Button>
                   </ListItem>
                 )}
+                {/* ✨ بخش عملیات ادمین */}
+              {loadingDeliver && <Loader />}
+              {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                <ListItem>
+                  <Button
+                    type="button"
+                    variant="contained"
+                    fullWidth
+                    onClick={deliverOrderHandler}
+                  >
+                    علامت‌گذاری به عنوان ارسال شده
+                  </Button>
+                </ListItem>
+              )}
               </List>
             </CardContent>
           </Card>

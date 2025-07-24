@@ -97,4 +97,22 @@ const getOrders = asyncHandler(async (req, res) => {
   res.status(200).json(orders);
 });
 
-export { addOrderItems, getOrderById, updateOrderToPaid, getMyOrders,getOrders };
+// @desc    Update order to delivered
+// @route   PUT /api/orders/:id/deliver
+// @access  Private/Admin
+const updateOrderToDelivered = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
+
+    const updatedOrder = await order.save();
+    res.status(200).json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error('سفارش یافت نشد');
+  }
+});
+
+export { addOrderItems, getOrderById, updateOrderToPaid, getMyOrders,getOrders,updateOrderToDelivered };
