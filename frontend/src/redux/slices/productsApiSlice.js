@@ -19,8 +19,27 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+   createProduct: builder.mutation({
+      query: () => ({
+        url: PRODUCTS_URL,
+        method: 'POST',
+      }),
+      invalidatesTags: ['Product'], // برای رفرش کردن لیست پس از ایجاد
+    }),
+    
+    // ✨ Mutation جدید برای حذف محصول
+    deleteProduct: builder.mutation({
+      query: (productId) => ({
+        url: `${PRODUCTS_URL}/${productId}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
-// RTK Query به صورت خودکار برای ما هوک‌هایی بر اساس نام اندپوینت‌ها می‌سازد
-export const { useGetProductsQuery, useGetProductDetailsQuery } = productsApiSlice;
+export const {
+  useGetProductsQuery,
+  useGetProductDetailsQuery,
+  useCreateProductMutation, // ✨
+  useDeleteProductMutation, // ✨
+} = productsApiSlice;
