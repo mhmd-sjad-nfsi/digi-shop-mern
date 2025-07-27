@@ -6,9 +6,17 @@ import Product from '../models/productModel.js'; // ✨ مدل Product را ای
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}); // ✨ به جای خواندن از فایل، از دیتابیس می‌خوانیم
-  res.json(products);
+  const pageSize = 8; // تعداد محصولات در هر صفحه
+  const page = Number(req.query.pageNumber) || 1;
+
+  const count = await Product.countDocuments({}); // تعداد کل محصولات
+  const products = await Product.find({})
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
+
 
 // @desc    دریافت یک محصول با آیدی
 // @route   GET /api/products/:id

@@ -18,12 +18,15 @@ import UserEditPage from "./pages/admin/UserEditPage"; // ✨
 import ProductListPage from "./pages/admin/ProductListPage"; // ✨
 import ProductEditPage from "./pages/admin/ProductEditPage"; // ✨
 import OrderListPage from "./pages/admin/OrderListPage";
+import Paginate from "./components/Paginate";
+
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
+        <Route path="/page/:pageNumber" element={<HomePage />} />
         <Route path="product/:id" element={<ProductDetailsPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPage />} />
