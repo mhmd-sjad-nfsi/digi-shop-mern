@@ -21,12 +21,14 @@ import OrderListPage from "./pages/admin/OrderListPage";
 import Paginate from "./components/Paginate";
 
 
+
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="/page/:pageNumber" element={<HomePage />} />
+        <Route path="/search/:keyword" element={<HomePage />} /> {/* ✨ */}
+        <Route path="/search/:keyword/page/:pageNumber" element={<HomePage />} /> {/* ✨ */}
         <Route path="product/:id" element={<ProductDetailsPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPage />} />

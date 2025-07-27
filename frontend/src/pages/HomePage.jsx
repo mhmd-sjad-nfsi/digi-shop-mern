@@ -11,8 +11,8 @@ import Paginate from '../components/Paginate'; // ✨
 import Message from '../components/Message';
 
 const HomePage = () => {
-  const { pageNumber } = useParams(); // ✨ شماره صفحه را از URL می‌خوانیم
-  const { data, isLoading, error } = useGetProductsQuery({ pageNumber }); // ✨
+  const { pageNumber, keyword } = useParams(); // ✨ keyword را از URL می‌خوانیم
+  const { data, isLoading, error } = useGetProductsQuery({ keyword, pageNumber }); // ✨
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Typography variant="h4" component="h1" gutterBottom>
@@ -27,7 +27,7 @@ const HomePage = () => {
               </Grid>
             ))}
           </Grid>
-          <Paginate pages={data.pages} page={data.page} /> {/* ✨ */}
+          <Paginate pages={data.pages} page={data.page} keyword={keyword ? keyword : ''} /> {/* ✨ */}
         </>
       )}
     </Container>

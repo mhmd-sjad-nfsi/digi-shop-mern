@@ -6,6 +6,8 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../redux/slices/usersApiSlice';
 import { logout } from '../redux/slices/authSlice';
+import SearchBox from './SearchBox'; // ✨
+
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -47,12 +49,14 @@ const Header = () => {
           >
             دیجی شاپ
           </Typography>
+          <SearchBox />
 
           <IconButton component={RouterLink} to="/cart" color="inherit" sx={{ mr: 1 }}>
             <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0)} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>
+          
 
           {userInfo ? (
             <>
@@ -73,6 +77,7 @@ const Header = () => {
                   </Menu>
                 </>
               )}
+              
               {/* منوی کاربری */}
               <IconButton onClick={handleOpenUserMenu} color="inherit">
                 <Typography sx={{ ml: 1, display: { xs: 'none', sm: 'block' } }}>{userInfo.name}</Typography>
@@ -93,6 +98,7 @@ const Header = () => {
               <Button color="inherit" component={RouterLink} to="/register">ثبت‌نام</Button>
             </>
           )}
+          
         </Toolbar>
       </Container>
     </AppBar>

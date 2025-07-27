@@ -9,9 +9,9 @@ export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // تعریف اولین query: دریافت همه محصولات
     getProducts: builder.query({
-      query: ({ pageNumber }) => ({ // ✨ pageNumber را به عنوان پارامتر می‌پذیریم
+      query: ({ keyword, pageNumber }) => ({ // ✨ keyword را اضافه می‌کنیم
         url: PRODUCTS_URL,
-        params: { pageNumber }, // ✨ و به عنوان query param ارسال می‌کنیم
+        params: { keyword, pageNumber }, // ✨
       }),
       keepUnusedDataFor: 5,
       providesTags: ['Product'],
