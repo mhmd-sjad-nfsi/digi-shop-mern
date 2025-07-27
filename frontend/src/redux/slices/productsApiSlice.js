@@ -52,6 +52,15 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+   // ✨ Mutation جدید برای ثبت نظر
+    createReview: builder.mutation({
+      query: (data) => ({
+        url: `${PRODUCTS_URL}/${data.productId}/reviews`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Product'], // ✨ کش این محصول را باطل می‌کند
+    }),
   }),
 });
 
@@ -62,4 +71,5 @@ export const {
   useDeleteProductMutation, // ✨
   useUpdateProductMutation, // ✨
   useUploadProductImageMutation, // ✨
+  useCreateReviewMutation, // ✨
 } = productsApiSlice;
