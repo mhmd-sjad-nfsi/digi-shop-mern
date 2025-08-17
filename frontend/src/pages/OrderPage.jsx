@@ -1,19 +1,9 @@
-// frontend/src/pages/OrderPage.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams, Link as RouterLink } from 'react-router-dom';
+import { useParams, useLocation, Link as RouterLink } from 'react-router-dom';
 import {
-  Box,
-  Typography,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  CardMedia,
-  Button,
-  Card,
-  CardContent,
-  Container, // ✨ Make sure Container is imported
+  Box, Typography, Grid, List, ListItem, ListItemText, CardMedia,
+  Button, Card, CardContent, Container,
 } from '@mui/material';
 import { toast } from 'react-toastify';
 import Loader from '../components/Loader';
@@ -23,29 +13,48 @@ import {
   usePayOrderMutation,
   useDeliverOrderMutation,
 } from '../redux/slices/ordersApiSlice';
-
 const OrderPage = () => {
   const { id: orderId } = useParams();
+  const location = useLocation();
+
   const {
-    data: order,
-    refetch,
-    isLoading,
-    error,
+    data: order, refetch, isLoading, error,
   } = useGetOrderDetailsQuery(orderId);
 
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
   const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
-    const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.auth);
+  
+  useEffect(() => {
+    // بررسی پارامترهای بازگشتی از درگاه پرداخت در URL
+    const params = new URLSearchParams(location.search);
+    const paymentError = params.get('error');
 
-  const onApproveTest = async () => {
+    if (paymentError) {
+      if (paymentError === 'payment_failed') {
+        toast.error('پرداخت ناموفق بود. لطفاً دوباره تلاش کنید.');
+      } else if (paymentError === 'payment_cancelled') {
+        toast.warning('پرداخت توسط شما لغو شد.');
+      }
+      // برای جلوگیری از نمایش مجدد toast، پارامتر خطا را از URL حذف می‌کنیم
+      window.history.replaceState(null, '', `/order/${orderId}`);
+    } else if (order && order.isPaid && !toast.isActive('payment-success')) {
+      // این حالت برای زمانی است که پرداخت موفق بوده و از درگاه برگشته‌ایم
+      toast.success('پرداخت با موفقیت انجام شد!', { toastId: 'payment-success' });
+    }
+  }, [location.search, order, orderId]);
+
+  const payHandler = async () => {
     try {
-      await payOrder({ orderId, details: { payer: {} } }).unwrap();
-      refetch();
-      toast.success('پرداخت با موفقیت انجام شد');
+      const res = await payOrder(orderId).unwrap();
+      window.location.href = res.url; // ✨ هدایت کاربر به درگاه پرداخت
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
   };
+
+
+
   const deliverOrderHandler = async () => {
     try {
       await deliverOrder(orderId);
@@ -164,11 +173,11 @@ const OrderPage = () => {
                   <ListItem>
                     {loadingPay && <Loader />}
                     <Button
-                      onClick={onApproveTest}
+                      onClick={payHandler} // ✨ اتصال به تابع جدید
                       variant="contained"
                       fullWidth
                     >
-                      پرداخت شبیه‌سازی شده
+                      پرداخت با زرین‌پال
                     </Button>
                   </ListItem>
                 )}
