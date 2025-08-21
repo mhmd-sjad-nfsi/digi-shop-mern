@@ -11,12 +11,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     register: builder.mutation({
-      query: (data) => ({
-        url: USERS_URL,
-        method: "POST",
-        body: data,
-      }),
-    }),
+  query: (data) => ({
+    url: USERS_URL,
+    method: 'POST',
+    body: data,
+  }),
+  invalidatesTags: ['User'], // ✨ این خط باعث رفرش شدن لیست کاربران می‌شود
+}),
     logout: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/logout`, // این اندپوینت را بعدا در بک‌اند می‌سازیم

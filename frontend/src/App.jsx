@@ -28,7 +28,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="/search/:keyword" element={<HomePage />} /> {/* ✨ */}
-        <Route path="/search/:keyword/page/:pageNumber" element={<HomePage />} /> {/* ✨ */}
+        <Route path="/page/:pageNumber" element={<HomePage />} />
         <Route path="product/:id" element={<ProductDetailsPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -47,6 +47,8 @@ function App() {
           <Route path="/admin/users" element={<UserListPage />} />
           <Route path="/admin/user/:id/edit" element={<UserEditPage />} />
           <Route path="/admin/products" element={<ProductListPage />} />
+          {/* ✨ **این دو خط را اضافه کنید** ✨ */}
+          <Route path="/admin/products/page/:pageNumber" element={<ProductListPage />} />
           <Route path="/admin/product/:id/edit" element={<ProductEditPage />} />
           <Route path="/admin/orders" element={<OrderListPage />} />{" "}
         </Route>

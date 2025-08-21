@@ -1,7 +1,7 @@
 const products = [
   {
     name: 'هدفون بی‌سیم Sony WH-1000XM5',
-    image: 'https://placehold.co/600x400/1A237E/FFFFFF?text=Sony+XM5',
+    image: '/uploads\\image-1755444603567.jpg',
     description: 'بهترین هدفون نویز کنسلینگ در بازار با کیفیت صدای بی‌نظیر و طراحی راحت.',
     brand: 'Sony',
     category: 'هدفون',
@@ -12,7 +12,7 @@ const products = [
   },
   {
     name: 'کنسول بازی PlayStation 5',
-    image: 'https://placehold.co/600x400/FF9100/000000?text=PS5',
+    image: '/uploads\\image-1755444707292.jpg',
     description: 'کنسول نسل نهمی سونی با درایو دیسک، سرعت بارگذاری فوق‌العاده و پشتیبانی از بازی‌های 4K.',
     brand: 'Sony',
     category: 'کنسول بازی',
@@ -23,7 +23,7 @@ const products = [
   },
   {
     name: 'کیبورد مکانیکال Logitech G Pro',
-    image: 'https://placehold.co/600x400/4CAF50/FFFFFF?text=Logitech+Keyboard',
+    image: '/uploads\\image-1755444777383.jpg',
     description: 'کیبورد گیمینگ با سوییچ‌های مکانیکال سریع و نورپردازی RGB قابل تنظیم.',
     brand: 'Logitech',
     category: 'لوازم جانبی کامپیوتر',
@@ -34,7 +34,7 @@ const products = [
   },
   {
     name: 'لپ‌تاپ Dell XPS 15',
-    image: 'https://placehold.co/600x400/1565C0/FFFFFF?text=Dell+XPS',
+    image: '/uploads\\image-1755444830145.jpg',
     description: 'لپ‌تاپ قدرتمند با صفحه نمایش 4K OLED، پردازنده Core i9 و طراحی اولترابوک.',
     brand: 'Dell',
     category: 'لپ تاپ',
@@ -45,7 +45,7 @@ const products = [
   },
   {
     name: 'گوشی هوشمند Samsung Galaxy S23 Ultra',
-    image: 'https://placehold.co/600x400/263238/FFFFFF?text=S23+Ultra',
+    image: '/uploads\\image-1755444899801.jpg',
     description: 'پرچمدار سامسونگ با دوربین 200 مگاپیکسلی، قلم S-Pen و پردازنده اسنپدراگون 8 نسل 2.',
     brand: 'Samsung',
     category: 'موبایل',
@@ -56,7 +56,7 @@ const products = [
   },
   {
     name: 'اسمارت واچ Apple Watch Series 8',
-    image: 'https://placehold.co/600x400/212121/FFFFFF?text=Apple+Watch',
+    image: '/uploads\\image-1755444980369.jpg',
     description: 'ساعت هوشمند اپل با سنسور ضربان قلب، ردیابی خواب و مقاوم در برابر آب تا 50 متر.',
     brand: 'Apple',
     category: 'اسمارت واچ',
@@ -67,7 +67,7 @@ const products = [
   },
   {
     name: 'دوربین Canon EOS R5',
-    image: 'https://placehold.co/600x400/37474F/FFFFFF?text=Canon+R5',
+    image: '/uploads\\image-1755445023683.jpg',
     description: 'دوربین فول فریم حرفه‌ای با قابلیت فیلمبرداری 8K و عکاسی 45 مگاپیکسلی.',
     brand: 'Canon',
     category: 'دوربین',
@@ -78,7 +78,7 @@ const products = [
   },
   {
     name: 'اسپیکر بلوتوث JBL Charge 5',
-    image: 'https://placehold.co/600x400/FF5722/000000?text=JBL+Charge',
+    image: '/uploads\\image-1755445067770.jpeg',
     description: 'اسپیکر قابل حمل با صدای قدرتمند، مقاوم در برابر آب و باتری 20 ساعته.',
     brand: 'JBL',
     category: 'اسپیکر',
@@ -89,7 +89,7 @@ const products = [
   },
   {
     name: 'هارد اکسترنال Seagate 2TB',
-    image: 'https://placehold.co/600x400/455A64/FFFFFF?text=Seagate+HDD',
+    image: '/uploads\\image-1755445493478.jpg',
     description: 'هارد اکسترنال پرتابل با ظرفیت 2 ترابایت و رابط USB 3.0 برای انتقال سریع داده.',
     brand: 'Seagate',
     category: 'ذخیره‌سازی',
@@ -100,7 +100,7 @@ const products = [
   },
   {
     name: 'مانیتور گیمینگ Asus ROG Swift',
-    image: 'https://placehold.co/600x400/D32F2F/FFFFFF?text=Asus+ROG',
+    image: '/uploads\\image-1755445551600.jpg',
     description: 'مانیتور 27 اینچی با نرخ تازه‌سازی 240Hz، زمان پاسخ 1ms و پشتیبانی از G-Sync.',
     brand: 'Asus',
     category: 'مانیتور',
@@ -111,7 +111,7 @@ const products = [
   },
   {
     name: 'تبلت Apple iPad Pro 12.9',
-    image: 'https://placehold.co/600x400/5D4037/FFFFFF?text=iPad+Pro',
+    image: '/uploads\\image-1755445621826.jpg',
     description: 'تبلت حرفه‌ای با تراشه M2، صفحه نمایش Liquid Retina XDR و پشتیبانی از Apple Pencil.',
     brand: 'Apple',
     category: 'تبلت',
@@ -122,7 +122,7 @@ const products = [
   },
   {
     name: 'ماوس بی‌سیم Razer Viper Ultimate',
-    image: 'https://placehold.co/600x400/388E3C/FFFFFF?text=Razer+Mouse',
+    image: '/uploads\\image-1755445660187.jpg',
     description: 'ماوس گیمینگ سبک وزن با سنسور 20K DPI، شارژ بی‌سیم و طراحی ارگونومیک.',
     brand: 'Razer',
     category: 'لوازم جانبی کامپیوتر',
@@ -133,7 +133,7 @@ const products = [
   },
   {
     name: 'تلویزیون هوشمند LG OLED 65',
-    image: 'https://placehold.co/600x400/0277BD/FFFFFF?text=LG+OLED',
+    image: '/uploads\\image-1755445695219.jpg',
     description: 'تلویزیون 65 اینچی با پنل OLED، پردازشگر هوشمند Alpha 9 و پشتیبانی از Dolby Vision.',
     brand: 'LG',
     category: 'تلویزیون',
@@ -144,7 +144,7 @@ const products = [
   },
   {
     name: 'نوت بوک Microsoft Surface Pro 9',
-    image: 'https://placehold.co/600x400/00838F/FFFFFF?text=Surface+Pro',
+    image: '/uploads\\image-1755445745110.jpg',
     description: 'تبلت-لپتاپ ترکیبی با پردازنده Core i7، صفحه نمایش 13 اینچی و قلم Surface Pen.',
     brand: 'Microsoft',
     category: 'لپ تاپ',
@@ -155,7 +155,7 @@ const products = [
   },
   {
     name: 'هدفون ورزشی Beats Fit Pro',
-    image: 'https://placehold.co/600x400/7B1FA2/FFFFFF?text=Beats+Pro',
+    image: '/uploads\\image-1755445816826.jpg',
     description: 'هدفون ایربادز مناسب ورزش با قابلیت نویز کنسلینگ و طراحی ضد عرق و آب.',
     brand: 'Beats',
     category: 'هدفون',
@@ -166,7 +166,7 @@ const products = [
   },
   {
     name: 'دستگاه اکو Amazon Echo Dot',
-    image: 'https://placehold.co/600x400/FF6D00/000000?text=Echo+Dot',
+    image: '/uploads\\image-1755445907370.jpg',
     description: 'دستیار صوتی هوشمند با الکسا، کنترل خانه هوشمند و کیفیت صدای بهبود یافته.',
     brand: 'Amazon',
     category: 'لوازم هوشمند',
@@ -177,7 +177,7 @@ const products = [
   },
   {
     name: 'کارت گرافیک NVIDIA RTX 4080',
-    image: 'https://placehold.co/600x400/00695C/FFFFFF?text=RTX+4080',
+    image: '/uploads\\image-1755445978336.jpg',
     description: 'کارت گرافیک قدرتمند با معماری Ada Lovelace، 16GB GDDR6X و پشتیبانی از Ray Tracing.',
     brand: 'NVIDIA',
     category: 'سخت افزار کامپیوتر',
@@ -188,7 +188,7 @@ const products = [
   },
   {
     name: 'پرینتر لیزری HP LaserJet Pro',
-    image: 'https://placehold.co/600x400/0D47A1/FFFFFF?text=HP+Printer',
+    image: '/uploads\\image-1755446028370.jpg',
     description: 'پرینتر چندکاره با سرعت چاپ 40 صفحه در دقیقه، وای‌فای و سینی کاغذ 250 برگ.',
     brand: 'HP',
     category: 'پرینتر',
@@ -199,7 +199,7 @@ const products = [
   },
   {
     name: 'دوربین ورزشی GoPro Hero 11',
-    image: 'https://placehold.co/600x400/E64A19/FFFFFF?text=GoPro+Hero',
+    image: '/uploads\\image-1755446063881.jpg',
     description: 'دوربین اکشن با قابلیت فیلمبرداری 5.3K، تثبیت‌کننده HyperSmooth 5.0 و ضدآب تا 10 متر.',
     brand: 'GoPro',
     category: 'دوربین',
@@ -210,7 +210,7 @@ const products = [
   },
   {
     name: 'کتابخوان Kindle Paperwhite',
-    image: 'https://placehold.co/600x400/424242/FFFFFF?text=Kindle',
+    image: '/uploads\\image-1755446107538.png',
     description: 'کتابخوان الکترونیکی با صفحه نمایش 6.8 اینچی ضد آب، نور تنظیم پذیر و باتری 10 هفته‌ای.',
     brand: 'Amazon',
     category: 'لوازم الکترونیکی',
@@ -221,7 +221,7 @@ const products = [
   },
   {
     name: 'پاوربانک Anker PowerCore 20000',
-    image: 'https://placehold.co/600x400/FFC107/000000?text=Anker+Power',
+    image: '/uploads\\image-1755446141779.jpg',
     description: 'پاوربانک ظرفیت بالا با خروجی 30W، قابلیت شارژ سریع و طراحی جمع و جور.',
     brand: 'Anker',
     category: 'لوازم جانبی موبایل',
@@ -230,97 +230,11 @@ const products = [
     rating: 4.5,
     numReviews: 180,
   },
-  {
-    name: 'کیف لپتاپ Targus CityGear',
-    image: 'https://placehold.co/600x400/455A64/FFFFFF?text=Targus+Bag',
-    description: 'کیف حرفه‌ای ضد آب با محفظه اختصاصی لپتاپ تا 15.6 اینچ و جیب‌های سازماندهی شده.',
-    brand: 'Targus',
-    category: 'لوازم جانبی',
-    price: 2200000,
-    countInStock: 40,
-    rating: 4.1,
-    numReviews: 65,
-  },
-  {
-    name: 'سیستم صوتی ساندبار Sony HT-S400',
-    image: 'https://placehold.co/600x400/1A237E/FFFFFF?text=Sony+Soundbar',
-    description: 'ساندبار 2.1 کاناله با ساب ووفر بی‌سیم، پشتیبانی از بلوتوث و صدای سینمایی Dolby Audio.',
-    brand: 'Sony',
-    category: 'صوتی و تصویری',
-    price: 14500000,
-    countInStock: 9,
-    rating: 4.4,
-    numReviews: 42,
-  },
-  {
-    name: 'روتر وای‌فای ASUS RT-AX86U',
-    image: 'https://placehold.co/600x400/1B5E20/FFFFFF?text=Asus+Router',
-    description: 'روتر گیمینگ وای‌فای 6 با سرعت 5700Mbps، آنتن‌های قدرتمند و امنیت پیشرفته.',
-    brand: 'Asus',
-    category: 'شبکه',
-    price: 9800000,
-    countInStock: 12,
-    rating: 4.6,
-    numReviews: 38,
-  },
-  {
-    name: 'هندزفری بی‌سیم Apple AirPods Pro',
-    image: 'https://placehold.co/600x400/4CAF50/000000?text=AirPods+Pro',
-    description: 'هندزفری با نویز کنسلینگ فعال، حالت شفاف و طراحی ارگونومیک برای استفاده طولانی.',
-    brand: 'Apple',
-    category: 'هدفون',
-    price: 11000000,
-    countInStock: 25,
-    rating: 4.8,
-    numReviews: 400,
-  },
-  {
-    name: 'دسکتاپ ای مک Apple iMac 24',
-    image: 'https://placehold.co/600x400/00B0FF/000000?text=iMac+24',
-    description: 'کامپیوتر آل-این-وان با تراشه M1، صفحه نمایش 4.5K Retina و طراحی زیبا.',
-    brand: 'Apple',
-    category: 'کامپیوتر',
-    price: 52000000,
-    countInStock: 6,
-    rating: 4.7,
-    numReviews: 75,
-  },
-  {
-    name: 'دوربین مداربسته Nest Cam',
-    image: 'https://placehold.co/600x400/616161/FFFFFF?text=Nest+Cam',
-    description: 'دوربین امنیتی هوشمند با دید در شب، تشخیص حرکت و ذخیره ابری فیلم‌ها.',
-    brand: 'Google',
-    category: 'امنیتی',
-    price: 7500000,
-    countInStock: 18,
-    rating: 4.3,
-    numReviews: 110,
-  },
-  {
-    name: 'پخش کننده بلوری Sony UBP-X800',
-    image: 'https://placehold.co/600x400/1A237E/FFFFFF?text=Sony+Blu-ray',
-    description: 'پخش کننده 4K Ultra HD با پشتیبانی از HDR، Dolby Vision و صدای Hi-Res.',
-    brand: 'Sony',
-    category: 'صوتی و تصویری',
-    price: 13500000,
-    countInStock: 7,
-    rating: 4.5,
-    numReviews: 29,
-  },
-  {
-    name: 'ماشین لباس‌شویی LG Front Load',
-    image: 'https://placehold.co/600x400/0277BD/FFFFFF?text=LG+Washer',
-    description: 'ماشین لباسشویی 10 کیلویی با موتور اینورتر مستقیم، بخار و مصرف انرژی A+++.',
-    brand: 'LG',
-    category: 'لوازم خانگی',
-    price: 32000000,
-    countInStock: 5,
-    rating: 4.6,
-    numReviews: 36,
-  },
+  
+ 
   {
     name: 'کنسول دستی Nintendo Switch OLED',
-    image: 'https://placehold.co/600x400/E91E63/000000?text=Nintendo+Switch',
+    image: '/uploads\\image-1755446202774.jpg',
     description: 'نسخه OLED با صفحه نمایش 7 اینچی، پایه بهبود یافته و حافظه داخلی 64GB.',
     brand: 'Nintendo',
     category: 'کنسول بازی',
@@ -329,17 +243,8 @@ const products = [
     rating: 4.8,
     numReviews: 210,
   },
-  {
-    name: 'پایه مانیتور ارگونومیک HUANUO',
-    image: 'https://placehold.co/600x400/455A64/FFFFFF?text=Monitor+Stand',
-    description: 'پایه قابل تنظیم ارتفاع و زاویه با قابلیت نصب دو مانیتور و مدیریت کابل.',
-    brand: 'HUANUO',
-    category: 'لوازم جانبی کامپیوتر',
-    price: 1800000,
-    countInStock: 30,
-    rating: 4.2,
-    numReviews: 85,
-  }
+  
 ];
 
 export default products;
+
