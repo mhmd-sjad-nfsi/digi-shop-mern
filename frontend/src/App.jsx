@@ -1,23 +1,12 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { Typography, Box, Container } from "@mui/material";
+import { Route ,Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+
 
 function App() {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <Header />
-      <Container component="main" sx={{ mt: 2, mb: 2}}>
-        <Typography
-          variant="h4"
-          sx={{ p: 3, color: "primary.main", textAlign: "center" }}
-        >
-          به فروشگاه دیجی شاپ خوش آمدید
-        </Typography>
-      </Container>
-
-      <Footer />
-    </Box>
+    <Routes>
+      <Route path="/" element={<Layout />} />
+    </Routes>
   );
 }
-
 export default App;
