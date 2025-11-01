@@ -1,5 +1,6 @@
 import {Typography , List , ListItem} from '@mui/material';
 import products from '../productsData';
+import ProductCard from '../components/ProductCard';
 
 const HomePage = () => {
     return (
@@ -8,13 +9,7 @@ const HomePage = () => {
                 محصولات موجود
             </Typography>
 
-            <List> 
-                {products.map((product) => (
-                    <ListItem key={product._id}>
-                        <Typography variant="body1">{product.name} </Typography>
-                    </ListItem>
-                ))}
-            </List>
+            <ProductCard  product={products[0]}/>
         </>
     );
 }
