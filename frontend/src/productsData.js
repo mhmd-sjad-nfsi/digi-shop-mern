@@ -9,7 +9,7 @@ const products = [
     category: 'هدفون',
     price: 12500000,
     countInStock: 10,
-    rating: 4.8,
+    rating: 2,
     numReviews: 32,
   },
   {
@@ -22,7 +22,7 @@ const products = [
     category: 'کنسول بازی',
     price: 28000000,
     countInStock: 5,
-    rating: 4.9,
+    rating: 4.5,
     numReviews: 150,
   },
   {
@@ -35,7 +35,7 @@ const products = [
     category: 'لوازم جانبی کامپیوتر',
     price: 4800000,
     countInStock: 20,
-    rating: 4.7,
+    rating: 1,
     numReviews: 45,
   },
   {
@@ -48,7 +48,7 @@ const products = [
     category: 'موبایل',
     price: 45000000,
     countInStock: 8,
-    rating: 4.6,
+    rating: 3.5,
     numReviews: 78,
   },
 ];
